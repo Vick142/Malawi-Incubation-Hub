@@ -26,10 +26,10 @@ export default function Home() {
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                 WELCOME TO DAEYANG SMART HUB
               </div>
-              <h1 className="text-5xl lg:text-7xl font-black text-white leading-[1.05] tracking-tight mb-8">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6 sm:mb-8">
                 Empowering Student Entrepreneurs in Malawi
               </h1>
-              <p className="text-xl text-blue-100 leading-relaxed mb-10 max-w-xl font-medium">
+              <p className="text-lg sm:text-xl text-blue-100 leading-relaxed mb-8 sm:mb-10 max-w-xl font-medium">
                 A modern incubation platform combining technology, mentorship, and funding pathways
                 to turn university ideas into scalable ventures.
               </p>
@@ -65,21 +65,21 @@ export default function Home() {
               </div>
 
               {/* Floating Stat Circle 1 (Top Left) */}
-              <div className="absolute -top-28 -left-12 z-20 bg-white p-4 rounded-full w-36 h-36 shadow-2xl border border-slate-100 flex flex-col items-center justify-center text-center">
-                <p className="text-xl font-black text-[#1E3A8A] leading-none mb-1">MwK 2M+</p>
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tight leading-tight">Funding Pool Available</p>
+              <div className="absolute -top-12 left-0 md:-top-28 md:-left-12 z-20 bg-white p-2 md:p-4 rounded-full w-24 h-24 md:w-36 md:h-36 shadow-2xl border border-slate-100 flex flex-col items-center justify-center text-center transition-all duration-300 hover:scale-105">
+                <p className="text-sm md:text-xl font-black text-[#1E3A8A] leading-none mb-0.5 md:mb-1">MwK 2M+</p>
+                <p className="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase tracking-tight leading-tight">Funding Pool Available</p>
               </div>
 
               {/* Floating Stat Circle 2 (Bottom Center-Left) */}
-              <div className="absolute -bottom-16 left-6 z-20 bg-cyan-500 p-4 rounded-full w-36 h-36 shadow-2xl flex flex-col items-center justify-center text-center text-white border-4 border-white">
-                <p className="text-3xl font-black leading-none mb-1">75%</p>
-                <p className="text-[10px] font-bold uppercase tracking-tight leading-tight opacity-90">Venture Success Rate</p>
+              <div className="absolute -bottom-10 left-4 md:-bottom-16 md:left-6 z-20 bg-cyan-500 p-2 md:p-4 rounded-full w-24 h-24 md:w-36 md:h-36 shadow-2xl flex flex-col items-center justify-center text-center text-white border-2 md:border-4 border-white transition-all duration-300 hover:scale-105">
+                <p className="text-lg md:text-3xl font-black leading-none mb-0.5 md:mb-1">75%</p>
+                <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-tight leading-tight opacity-90">Venture Success Rate</p>
               </div>
 
               {/* Floating Stat Circle 3 (Top Right) */}
-              <div className="absolute top-0 -right-12 z-20 bg-white p-4 rounded-full w-36 h-36 shadow-2xl border border-slate-100 flex flex-col items-center justify-center text-center">
-                <p className="text-2xl font-black text-[#1E3A8A] leading-none mb-1">50+</p>
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tight leading-tight">Expert Mentors Connected</p>
+              <div className="absolute top-0 right-0 md:top-0 md:-right-12 z-20 bg-white p-2 md:p-4 rounded-full w-24 h-24 md:w-36 md:h-36 shadow-2xl border border-slate-100 flex flex-col items-center justify-center text-center transition-all duration-300 hover:scale-105">
+                <p className="text-sm md:text-2xl font-black text-[#1E3A8A] leading-none mb-0.5 md:mb-1">50+</p>
+                <p className="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase tracking-tight leading-tight">Expert Mentors Connected</p>
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Section 1: The Background */}
-          <div className="bg-white p-10 rounded-3xl border border-slate-200/60 shadow-sm max-w-4xl mx-auto mb-20 flex flex-col md:flex-row gap-8 items-start hover:shadow-md transition-shadow">
+          <div className="bg-white p-10 rounded-3xl border border-slate-200/60 shadow-sm max-w-4xl mx-auto mb-20 flex flex-col md:flex-row gap-8 items-start hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
             <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-.778.099-1.533.284-2.253" />
@@ -117,7 +117,7 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
-              <div className="bg-white p-10 rounded-3xl border border-slate-200/60 shadow-sm hover:shadow-xl transition-all duration-300 group">
+              <div className="bg-white p-10 rounded-3xl border border-slate-200/60 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
                 <div className="w-14 h-14 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a5.97 5.97 0 0 0-.94 3.197M15.75 22.5a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75V21h7.5v1.5ZM7.5 7.5a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0Z" />
@@ -130,7 +130,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="bg-white p-10 rounded-3xl border border-slate-200/60 shadow-sm hover:shadow-xl transition-all duration-300 group">
+              <div className="bg-white p-10 rounded-3xl border border-slate-200/60 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
                 <div className="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
@@ -193,7 +193,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-white/10 text-center">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 mt-8 pt-6 border-t border-white/10 text-center">
                     <div>
                       <p className="text-xl lg:text-2xl font-black text-cyan-400 leading-none">MwK 0</p>
                       <p className="text-[10px] text-blue-200 font-bold uppercase mt-1">Typical Capital</p>

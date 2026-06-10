@@ -1,7 +1,8 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
@@ -22,11 +23,7 @@ export default function RootLayout({
         <div className="min-h-screen">
           {children}
         </div>
-        <footer className="bg-[#1E3A8A] text-white py-12">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <p className="text-slate-300 font-medium tracking-tight">© 2026 Daeyang University Smart Business Incubation Hub. All rights reserved.</p>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   );

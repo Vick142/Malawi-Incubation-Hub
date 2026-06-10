@@ -1,4 +1,6 @@
+import Image from "next/image";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
+import presentationImage from "@/assets/images/presentation.png";
 
 const directives = [
   {
@@ -67,7 +69,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-16 lg:items-center">
             <div>
               <div className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-[#1E3A8A] font-bold text-sm mb-6"> Our Vision</div>
-              <h2 className="text-4xl lg:text-5xl font-black text-[#1E3A8A] leading-tight mb-8">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1E3A8A] leading-tight mb-6 sm:mb-8">
                 Establishing a Smart, Tech-Driven Startup Ecosystem.
               </h2>
               <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
@@ -85,7 +87,14 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <ImagePlaceholder text="Insert high-resolution image of university workshop, academic seminar, or pitch presentation panel" />
+            <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-slate-100 group">
+              <Image
+                src={presentationImage}
+                alt="University workshop and pitch presentation panel"
+                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -125,7 +134,7 @@ export default function AboutPage() {
             {stakeholders.map((name, idx) => (
               <div
                 key={idx}
-                className="px-8 py-4 bg-white border border-slate-200 rounded-xl font-bold text-[#1E3A8A] shadow-sm hover:border-blue-400 hover:text-blue-600 transition-all cursor-default"
+                className="px-8 py-4 bg-white border border-slate-200 rounded-xl font-bold text-[#1E3A8A] shadow-sm hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50/50 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 cursor-default"
               >
                 {name}
               </div>
