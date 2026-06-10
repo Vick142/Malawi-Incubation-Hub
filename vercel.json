@@ -1,0 +1,4 @@
+{
+     "buildCommand": "cd malawi-incubation-hub && npm run build",
+     "outputDirectory": "malawi-incubation-hub/.next"
+   }
