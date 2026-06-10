@@ -1,128 +1,97 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import PlatformPreview from "@/components/PlatformPreview";
 
 export default function Home() {
   return (
-    <main className="bg-white min-h-screen">
-      {/* Hero Layout: The "Digimark" Framework */}
-      <section className="relative bg-[#1E3A8A] pt-16 pb-32 overflow-hidden">
-        {/* Geometric Overlay Accents */}
-        <div className="absolute bottom-0 right-0 opacity-10 pointer-events-none translate-x-1/4 translate-y-1/4 scale-150">
-          <div className="grid grid-cols-6 gap-2">
-            {Array.from({ length: 36 }).map((_, i) => (
-              <div key={i} className="w-16 h-16 border border-white" />
-            ))}
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-20 items-center">
-            {/* Left Column: 60% Width */}
-            <div className="space-y-10">
-              <div>
-                <p className="text-brand-cyan font-extrabold uppercase tracking-[0.3em] text-[11px] mb-6">
-                  Welcome to Daeyang Smart Hub
-                </p>
-                <h1 className="text-white text-6xl lg:text-[5rem] font-black leading-[0.92] tracking-tighter max-w-2xl">
-                  Empowering Student Entrepreneurs in Malawi
-                </h1>
+    <main>
+      {/* Hero Section */}
+      <section className="bg-white py-20 lg:py-28 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 font-bold text-xs uppercase tracking-widest mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                The Future of Malawi Innovation
               </div>
-              
-              <p className="text-white/80 text-lg lg:text-xl leading-relaxed max-w-xl font-medium">
-                Turning university innovation into scalable business reality. Access advanced technology, 
-                professional mentorship, and a direct pipeline to institutional funding.
+              <h1 className="text-5xl lg:text-7xl font-extrabold text-[#1E3A8A] leading-[1.05] tracking-tight mb-8">
+                Empowering Student Entrepreneurs in Malawi
+              </h1>
+              <p className="text-xl text-slate-600 leading-relaxed mb-10 max-w-xl">
+                A modern incubation platform combining technology, ment
+                orship, and funding pathways 
+                to turn university ideas into scalable ventures.
               </p>
-
-              <div className="pt-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/about"
-                  className="bg-white text-[#1E3A8A] px-10 py-5 rounded-none font-black text-sm uppercase tracking-widest shadow-2xl transition-all transform hover:-translate-y-1 hover:bg-brand-cyan hover:text-white"
+                  className="bg-[#1E3A8A] text-white px-8 py-4 rounded-full text-lg font-bold shadow-2xl shadow-navy/30 flex items-center justify-center group transition-all hover:scale-[1.03]"
                 >
                   Explore Our Mission
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/features"
+                  className="bg-slate-100 text-[#1E3A8A] px-8 py-4 rounded-full text-lg font-bold flex items-center justify-center hover:bg-slate-200 transition-colors"
+                >
+                  View Features
                 </Link>
               </div>
             </div>
 
-            {/* Right Column: 40% Width - The Image Complex */}
-            <div className="relative pt-12 lg:pt-0">
-               <div className="relative w-full aspect-square max-w-[480px] mx-auto">
-                  {/* cutout container placeholder */}
-                  <div className="absolute inset-0 bg-white/5 rounded-full animate-pulse border-4 border-white/10" />
-                  <div className="relative h-full w-full rounded-[3rem] overflow-hidden bg-white/10 border border-white/20 backdrop-blur-sm shadow-inner group">
-                     <ImagePlaceholder 
-                        text="[MAIN_HERO_FOUNDER_IMAGE] - Photo of an active student entrepreneur or team using a laptop" 
-                        className="h-full bg-transparent border-0 opacity-70 group-hover:opacity-100 transition-opacity"
-                     />
-                  </div>
-
-                  {/* Layered Stat Circle 1 (Top Left) */}
-                  <div className="absolute -top-6 -left-10 bg-white p-6 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.15)] flex flex-col items-center justify-center text-center w-36 h-36 animate-bounce transition-all [animation-duration:3s]">
-                    <strong className="text-[#1E3A8A] text-xl font-black">MWK 2M+</strong>
-                    <span className="text-[10px] uppercase font-bold text-slate-400 tracking-tight leading-none mt-1">Funding Pool Available</span>
-                  </div>
-
-                  {/* Layered Stat Circle 2 (Bottom) */}
-                  <div className="absolute -bottom-10 right-10 bg-brand-cyan p-6 rounded-full shadow-[0_20px_50px_rgba(56,189,248,0.3)] flex flex-col items-center justify-center text-center w-40 h-40">
-                    <strong className="text-white text-4xl font-black tracking-tighter">75%</strong>
-                    <span className="text-[11px] uppercase font-bold text-white tracking-widest leading-tight mt-1">Venture Success Rate</span>
-                  </div>
-
-                  {/* Layered Stat Circle 3 (Top Right) */}
-                  <div className="absolute top-1/4 -right-12 bg-white p-5 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] flex flex-col items-center justify-center text-center w-32 h-32">
-                    <strong className="text-[#1E3A8A] text-3xl font-black">50+</strong>
-                    <span className="text-[10px] uppercase font-bold text-slate-400 tracking-tight leading-none mt-1 text-nowrap">Expert Mentors Connected</span>
-                  </div>
-               </div>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-blue-100/50 rounded-[3.5rem] -rotate-2 scale-105" />
+              <div className="relative z-10 p-4 bg-white rounded-[2.5rem] shadow-2xl shadow-blue-500/10 border border-slate-100">
+                <ImagePlaceholder text="Insert high-quality photography of Daeyang University campus architecture or student founders collaborating" />
+              </div>
+              <div className="absolute -bottom-6 -left-6 z-20 bg-white p-6 rounded-2xl shadow-2xl border border-slate-100 max-w-[200px] hidden sm:block">
+                <p className="text-3xl font-black text-[#1E3A8A] leading-none mb-1">10+</p>
+                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Active Startups</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Core Context Sections */}
-      <section className="py-24 bg-white">
+      <section className="bg-slate-50 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="grid md:grid-cols-2 gap-8 mb-20">
-              {/* Section 1: The Background */}
-              <div className="p-12 bg-slate-50 border border-slate-100 rounded-[3rem] group hover:bg-white hover:shadow-2xl transition-all hover:border-blue-100">
-                 <div className="w-16 h-16 bg-[#1E3A8A] text-white rounded-2xl flex items-center justify-center mb-10 shadow-xl group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8">
-                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18" />
-                    </svg>
-                 </div>
-                 <h2 className="text-3xl font-black text-[#1E3A8A] mb-6 tracking-tight">The Background</h2>
-                 <p className="text-slate-500 font-medium leading-relaxed">
-                   Founded on the vision of self-reliance, we represent a major leap in Malawi academic-industry 
-                   collaboration. Our hub acts as the engine for grassroots economic growth through structured 
-                   innovation.
-                 </p>
-              </div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-extrabold text-[#1E3A8A] tracking-tight mb-4">The Challenge</h2>
+            <div className="w-20 h-1.5 bg-blue-500 mx-auto rounded-full" />
+          </div>
 
-              {/* Section 2: The Problem Statement */}
-              <div className="p-12 bg-slate-50 border border-slate-100 rounded-[3rem] group hover:bg-white hover:shadow-2xl transition-all hover:border-blue-100">
-                 <div className="w-16 h-16 bg-brand-cyan text-white rounded-2xl flex items-center justify-center mb-10 shadow-xl group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8">
-                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
-                    </svg>
-                 </div>
-                 <h2 className="text-3xl font-black text-[#1E3A8A] mb-6 tracking-tight">Problem Statement</h2>
-                 <p className="text-slate-500 font-medium leading-relaxed">
-                   University graduates face broken mentorship channels and zero capital access. We address the 
-                   critical gap where intellectual potential fails to meet market infrastructure.
-                 </p>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-shadow group">
+              <div className="w-14 h-14 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a5.97 5.97 0 0 0-.94 3.197M15.75 22.5a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75V21h7.5v1.5ZM7.5 7.5a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0Z" />
+                </svg>
               </div>
-           </div>
+              <h3 className="text-2xl font-bold text-[#1E3A8A] mb-4">Demographic Gap</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Malawi faces a rapidly growing youth population with limited access to structural incubation 
+                frameworks and capital. Traditional support systems fail to scale with the demand for innovation.
+              </p>
+            </div>
 
-           {/* Challenge Graphic Anchor */}
-           <div className="rounded-[4rem] overflow-hidden shadow-2xl animate-in fade-in slide-in-from-bottom-10 duration-1000">
-              <ImagePlaceholder 
-                 text="[THE_CHALLENGE_CAMPUS_GRAPHIC] - Wide, clean, borderless screenshot placeholder positioned to anchor the challenge statement elegantly" 
-                 landscape
-                 className="min-h-[440px] border-0 bg-slate-900 shadow-inner"
-              />
-           </div>
+            <div className="bg-white p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-shadow group">
+              <div className="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[#1E3A8A] mb-4">Commercialization Barriers</h3>
+              <p className="text-slate-600 leading-relaxed">
+                University graduates struggle to transform academic ideas into viable enterprises due to 
+                broken mentorship channels, inadequate market access, and high roadblocks to commercial launch.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
   );
 }
+
