@@ -72,19 +72,19 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
                 <p>
-                  The Smart Business Incubation Hub is a strategic initiative at Daeyang University 
+                  The Smart Business Incubation Hub is a strategic initiative at Daeyang University
                   to support student-led startups and foster a culture of entrepreneurship.
                 </p>
                 <div className="p-6 bg-[#1E3A8A] rounded-2xl text-white shadow-xl shadow-navy/20">
                   <p className="font-bold text-xl mb-2">Core Project Aim</p>
                   <p className="text-blue-100 italic">
-                    "To create a visible, practical, and sustainable incubation environment where 
+                    "To create a visible, practical, and sustainable incubation environment where
                     university students can transform ideas into commercially viable ventures."
                   </p>
                 </div>
               </div>
             </div>
-            
+
             <ImagePlaceholder text="Insert high-resolution image of university workshop, academic seminar, or pitch presentation panel" />
           </div>
         </div>
@@ -100,7 +100,7 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {directives.map((dir, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
               >
@@ -123,7 +123,7 @@ export default function AboutPage() {
           </div>
           <div className="flex flex-wrap justify-center gap-4 md:gap-8">
             {stakeholders.map((name, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="px-8 py-4 bg-white border border-slate-200 rounded-xl font-bold text-[#1E3A8A] shadow-sm hover:border-blue-400 hover:text-blue-600 transition-all cursor-default"
               >
