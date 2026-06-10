@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -7,7 +7,7 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "About & Objectives", href: "/about" },
   { label: "Platform Features", href: "/features" },
-  { label: "Framework & Sustainability", href: "/framework" },
+  { label: "Framework", href: "/framework" },
 ];
 
 export default function Header() {
@@ -46,10 +46,11 @@ export default function Header() {
 
         <div>
           <Link
-            href="/features"
-            className="bg-white text-[#1E3A8A] px-6 py-2.5 rounded-none font-extrabold text-xs uppercase tracking-[0.15em] shadow-xl hover:bg-brand-cyan hover:text-white transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-nowrap"
+            href="/signup"
+            className="bg-white px-6 py-2.5 rounded-none font-extrabold text-xs uppercase tracking-[0.15em] shadow-xl hover:bg-slate-100 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-nowrap block"
+            style={{ color: '#1E3A8A' }}
           >
-            Launch Portal
+            GET STARTED
           </Link>
         </div>
       </div>
