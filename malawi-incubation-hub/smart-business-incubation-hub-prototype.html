@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Business Incubation Hub - Daeyang University Prototype</title>
+  <style>
+    :root {
+      --navy: #1e3a8a;
+      --blue: #3b82f6;
+      --green: #10b981;
+      --bg: #ffffff;
+      --alt: #f8fafc;
+      --line: rgba(30, 58, 138, 0.12);
+      --text: #0f172a;
+      --muted: #475569;
+      --soft: rgba(59, 130, 246, 0.1);
+      --shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: auto; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 24%, #ffffff 100%);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a, button { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+
+    .app-shell {
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 20px;
+      z-index: 30;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      border-radius: 999px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+      padding: 14px 18px;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 220px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: 0 12px 24px rgba(30, 58, 138, 0.18);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 0.98rem;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-copy span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-link {
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 180ms ease;
+    }
+
+    .nav-link:hover {
+      color: var(--navy);
+      background: rgba(59, 130, 246, 0.07);
+    }
+
+    .nav-link.active {
+      color: white;
+      background: var(--blue);
+      border-color: rgba(59, 130, 246, 0.35);
+      box-shadow: 0 12px 24px rgba(59, 130, 246, 0.18);
+    }
+
+    .cta {
+      border: 0;
+      background: var(--navy);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 16px 30px rgba(30, 58, 138, 0.18);
+    }
+
+    .page {
+      display: none;
+      margin-top: 22px;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .page-band {
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      border-radius: 40px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .page-band.white { background: #ffffff; }
+    .page-band.slate { background: var(--alt); }
+    .page-band.navy {
+      background: linear-gradient(180deg, #1e3a8a 0%, #15306f 100%);
+      color: white;
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-grid, .split-grid, .feature-grid, .objectives-grid, .stakeholder-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1.08fr 0.92fr;
+      align-items: center;
+    }
+
+    .split-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .feature-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: stretch;
+    }
+
+    .objectives-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .stakeholder-grid {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .eyebrow.light { color: rgba(255, 255, 255, 0.82); }
+
+    h1, h2, h3 {
+      margin: 0;
+      letter-spacing: -0.05em;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 6vw, 5.8rem);
+      line-height: 0.92;
+      font-weight: 900;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      line-height: 0.98;
+      font-weight: 900;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+      line-height: 1.04;
+      font-weight: 800;
+    }
+
+    p { margin: 0; }
+
+    .lede {
+      font-size: 1.03rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .button-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 18px 36px rgba(59, 130, 246, 0.22);
+    }
+
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(30, 58, 138, 0.12);
+      background: white;
+      color: var(--navy);
+      padding: 15px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .hero-right {
+      position: relative;
+      min-height: 520px;
+      border-radius: 36px;
+      overflow: hidden;
+      background: linear-gradient(145deg, #eff4fb, #ffffff 50%, #f3f7fd);
+      border: 1px solid rgba(30, 58, 138, 0.1);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .hero-art {
+      position: absolute;
+      inset: 24px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 68% 26%, rgba(59, 130, 246, 0.18), transparent 0 19%),
+        radial-gradient(circle at 25% 78%, rgba(16, 185, 129, 0.18), transparent 0 18%),
+        linear-gradient(135deg, #eef4ff 0%, #f8fbff 42%, #e9eef8 100%);
+      border: 1px solid rgba(30, 58, 138, 0.08);
+    }
+
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      background: linear-gradient(160deg, rgba(255,255,255,0.8), rgba(255,255,255,0.55));
+      backdrop-filter: blur(8px);
+    }
+
+    .camera-box {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      color: var(--navy);
+    }
+
+    .camera-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      background: rgba(30, 58, 138, 0.08);
+      color: var(--navy);
+    }
+
+    .helper-text {
+      max-width: 360px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 10px;
+      font-size: 0.96rem;
+    }
+
+    .metric-stack {
+      position: absolute;
+      right: 22px;
+      bottom: 22px;
+      display: grid;
+      gap: 14px;
+      width: min(100%, 220px);
+      z-index: 2;
+    }
+
+    .metric-card {
+      background: rgba(24, 24, 24, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 22px;
+      padding: 16px 16px 14px;
+      color: white;
+      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.14);
+    }
+
+    .metric-card strong {
+      display: block;
+      font-size: 1.55rem;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .metric-card span {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.82rem;
+      color: #b8b8b8;
+    }
+
+    .kpi-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .band-title {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+
+    .band-title .eyebrow { color: #1e3a8a; }
+    .band-title h2 { color: #0f172a; }
+
+    .grid-2 {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      border-radius: 28px;
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      background: white;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.06);
+      padding: 24px;
+    }
+
+    .card.soft { background: var(--alt); }
+
+    .challenge-card {
+      padding: 28px;
+      border-radius: 30px;
+      background: white;
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      min-height: 250px;
+    }
+
+    .challenge-card ul {
+      margin: 18px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .objectives-grid .card {
+      min-height: 205px;
+    }
+
+    .icon-chip {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(59, 130, 246, 0.08);
+      color: var(--blue);
+      border: 1px solid rgba(59, 130, 246, 0.14);
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .stakeholder-grid .chip {
+      min-height: 98px;
+      border-radius: 22px;
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      background: white;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 16px;
+      color: var(--navy);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.05);
+    }
+
+    .tabs-layout {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: 280px 1fr;
+      align-items: stretch;
+    }
+
+    .tabs {
+      display: grid;
+      gap: 12px;
+    }
+
+    .tab-btn {
+      width: 100%;
+      text-align: left;
+      border-radius: 18px;
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      background: white;
+      color: var(--text);
+      padding: 16px 16px;
+      cursor: pointer;
+      transition: 180ms ease;
+      font-weight: 700;
+    }
+
+    .tab-btn:hover {
+      border-color: rgba(59, 130, 246, 0.38);
+      box-shadow: 0 10px 24px rgba(59, 130, 246, 0.08);
+    }
+
+    .tab-btn.active {
+      background: rgba(59, 130, 246, 0.08);
+      border-color: rgba(59, 130, 246, 0.35);
+      color: var(--navy);
+    }
+
+    .tab-panel {
+      display: none;
+      background: white;
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      border-radius: 30px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .tab-panel.active { display: block; }
+
+    .feature-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .feature-list li {
+      list-style: none;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: var(--alt);
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .window-mockup {
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(30, 58, 138, 0.1);
+      box-shadow: 0 24px 50px rgba(15, 23, 42, 0.08);
+      background: white;
+    }
+
+    .window-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 16px;
+      background: #eff4fb;
+      border-bottom: 1px solid rgba(30, 58, 138, 0.08);
+    }
+
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dot.red { background: #ef4444; }
+    .dot.yellow { background: #f59e0b; }
+    .dot.green { background: #10b981; }
+
+    .window-body {
+      padding: 22px;
+      min-height: 390px;
+      background:
+        linear-gradient(180deg, rgba(248, 250, 252, 0.58), rgba(255, 255, 255, 0.95)),
+        linear-gradient(135deg, rgba(59,130,246,0.06), rgba(30,58,138,0.03));
+    }
+
+    .window-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .portal-screen {
+      min-height: 300px;
+      border-radius: 24px;
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      background: linear-gradient(135deg, #ffffff, #f8fafc);
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .mini-tile {
+      border-radius: 18px;
+      background: white;
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.04);
+    }
+
+    .roadmap {
+      display: grid;
+      gap: 18px;
+    }
+
+    .phase {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .phase-line {
+      position: relative;
+      min-height: 100%;
+    }
+
+    .phase-line::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(30, 58, 138, 0.16);
+    }
+
+    .phase-dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 2px solid var(--blue);
+      background: rgba(59, 130, 246, 0.07);
+      box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.08);
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .phase-card {
+      border-radius: 24px;
+      background: white;
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      padding: 20px 22px;
+    }
+
+    .outcomes {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .outcome {
+      background: white;
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      border-radius: 20px;
+      padding: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      min-height: 104px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+    }
+
+    .check {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--green);
+      font-size: 0.9rem;
+    }
+
+    .sustain-grid {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: start;
+    }
+
+    .revenue-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .revenue-list .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: #fff;
+      border: 1px solid rgba(30, 58, 138, 0.08);
+      border-radius: 18px;
+      padding: 14px 16px;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .placeholder-box {
+      border-radius: 30px;
+      background: linear-gradient(180deg, #f8fafc, #eef4fb);
+      border: 1px dashed rgba(30, 58, 138, 0.16);
+      padding: 30px;
+      min-height: 280px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .placeholder-box strong {
+      display: block;
+      margin-top: 10px;
+      color: var(--navy);
+      font-size: 1.06rem;
+      letter-spacing: -0.03em;
+    }
+
+    .icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(59, 130, 246, 0.08);
+      color: var(--blue);
+      border: 1px solid rgba(59, 130, 246, 0.14);
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid, .split-grid, .feature-grid, .sustain-grid, .window-grid, .tabs-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .objectives-grid, .stakeholder-grid, .outcomes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .app-shell { padding: 12px; }
+      .header { top: 12px; border-radius: 28px; }
+      .page { margin-top: 14px; }
+      .page-band { padding: 22px; border-radius: 28px; }
+      .objectives-grid, .stakeholder-grid, .outcomes, .kpi-grid, .grid-2, .portal-screen {
+        grid-template-columns: 1fr;
+      }
+      .hero-right { min-height: 440px; }
+      .metric-stack { position: static; width: 100%; margin-top: 230px; }
+      .window-body { padding: 16px; }
+      .header-inner { justify-content: center; }
+      .brand { justify-content: center; }
+      .nav { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="container">
+      <header class="header" role="banner">
+        <div class="header-inner">
+          <div class="brand" aria-label="Daeyang Hub logo branding">
+            <div class="brand-mark">DH</div>
+            <div class="brand-copy">
+              <strong>Daeyang Hub</strong>
+              <span>Smart Business Incubation Hub</span>
+            </div>
+          </div>
+
+          <nav class="nav" aria-label="Primary navigation">
+            <button class="nav-link active" type="button" data-page="home">Home</button>
+            <button class="nav-link" type="button" data-page="about">About & Objectives</button>
+            <button class="nav-link" type="button" data-page="platform">Platform Features</button>
+            <button class="nav-link" type="button" data-page="framework">Framework & Sustainability</button>
+          </nav>
+
+          <button class="cta" type="button" data-page-target="platform">Launch Portal</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="page active" id="home" data-page="home">
+          <div class="page-band white">
+            <div class="hero-grid">
+              <div>
+                <div class="eyebrow">Gateway</div>
+                <h1 style="margin-top:16px; max-width: 11ch;">Empowering Student Entrepreneurs in Malawi</h1>
+                <p class="lede" style="margin-top:18px;">
+                  A modern incubation platform for student innovators, combining technology, mentorship, market access,
+                  and funding pathways to turn university ideas into trusted ventures.
+                </p>
+                <div class="hero-actions">
+                  <button class="button-primary" type="button" data-page-target="about">Explore Our Mission</button>
+                  <button class="button-secondary" type="button" data-page-target="framework">See the Program</button>
+                </div>
+                <div class="kpi-grid" style="margin-top:30px;">
+                  <div class="card soft">
+                    <div class="eyebrow">Student-first</div>
+                    <p style="margin-top:10px; color:var(--muted); line-height:1.8;">Built to support founders with secure workflows and clear pathways.</p>
+                  </div>
+                  <div class="card soft">
+                    <div class="eyebrow">University-ready</div>
+                    <p style="margin-top:10px; color:var(--muted); line-height:1.8;">A formal structure for campus innovation and enterprise growth.</p>
+                  </div>
+                  <div class="card soft">
+                    <div class="eyebrow">Investor credible</div>
+                    <p style="margin-top:10px; color:var(--muted); line-height:1.8;">Designed to communicate trust, discipline, and measurable traction.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-right" aria-label="Hero image placeholder">
+                <div class="hero-art"></div>
+                <div class="camera-box">
+                  <div>
+                    <div class="camera-icon" aria-hidden="true">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 7h4l2-2h4l2 2h4v12H4z"></path>
+                        <circle cx="12" cy="13" r="3.5"></circle>
+                      </svg>
+                    </div>
+                    <strong style="font-size:1rem; letter-spacing:-0.02em; color:var(--navy);">[PLACEHOLDER: IMAGE_HOME_HERO]</strong>
+                    <p class="helper-text">Insert high-quality photo of Daeyang University campus or student innovators collaborating here.</p>
+                  </div>
+                </div>
+                <div class="metric-stack" aria-label="Hero metrics">
+                  <div class="metric-card">
+                    <strong>6B+ Revenue</strong>
+                    <span>Measured platform impact</span>
+                  </div>
+                  <div class="metric-card">
+                    <strong>91% Retention</strong>
+                    <span>Strong learner continuity</span>
+                  </div>
+                  <div class="metric-card">
+                    <strong>60% Increase</strong>
+                    <span>Growth in startup readiness</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="page-band slate" style="margin-top:24px;">
+            <div class="split-grid">
+              <div>
+                <div class="eyebrow">Challenge</div>
+                <h2 style="margin-top:12px; max-width: 14ch;">Malawi’s youth need structured support.</h2>
+                <p class="lede" style="margin-top:16px; max-width: 50ch;">
+                  A growing student population needs incubation services, capital access, and practical pathways into
+                  entrepreneurship that can be sustained beyond the classroom.
+                </p>
+              </div>
+              <div class="grid-2">
+                <div class="challenge-card">
+                  <div class="icon-circle">01</div>
+                  <h3>Demographic pressure</h3>
+                  <ul>
+                    <li>Large youth cohorts entering the economy each year.</li>
+                    <li>Demand for employable, entrepreneurial skills continues to rise.</li>
+                  </ul>
+                </div>
+                <div class="challenge-card">
+                  <div class="icon-circle">02</div>
+                  <h3>Support gaps</h3>
+                  <ul>
+                    <li>Insufficient incubation services and seed capital.</li>
+                    <li>Graduation barriers, mentorship gaps, and weak market access.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="about" data-page="about">
+          <div class="page-band navy">
+            <div class="split-grid">
+              <div>
+                <div class="eyebrow light">Academic Core</div>
+                <h2 style="margin-top:12px; max-width: 13ch;">A mission to seed entrepreneurship within Daeyang University.</h2>
+                <p class="lede" style="margin-top:16px; color: rgba(255,255,255,0.78); max-width: 52ch;">
+                  The platform nurtures student-led startups, strengthens practical innovation, and creates a bridge between
+                  education, enterprise, and investment.
+                </p>
+                <div class="card" style="margin-top:26px; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: white;">
+                  <p style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.28em; color: rgba(255,255,255,0.72);">Project Aim</p>
+                  <p style="margin-top:12px; line-height:1.8; color: rgba(255,255,255,0.86);">
+                    Build a visible, practical and sustainable incubation environment for university students to transform
+                    ideas into commercially viable ventures.
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div class="placeholder-box" style="background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(240,245,255,0.96)); min-height: 380px;">
+                  <div>
+                    <div class="camera-icon" style="margin:0 auto 14px; background: rgba(30,58,138,0.08);">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="7" width="18" height="12" rx="2"></rect>
+                        <path d="M8 7l2-3h4l2 3"></path>
+                        <circle cx="12" cy="13" r="3"></circle>
+                      </svg>
+                    </div>
+                    <strong>[PLACEHOLDER: IMAGE_ABOUT_MISSION]</strong>
+                    <p class="helper-text">Insert authentic photo of university workshop or student team presenting here.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="page-band white" style="margin-top:24px;">
+            <div class="band-title">
+              <div class="eyebrow">Strategic Objectives</div>
+              <h2>Five outcomes that make the hub credible and measurable.</h2>
+            </div>
+            <div class="objectives-grid">
+              <div class="card"><div class="icon-chip">1</div><h3 style="margin-top:18px;">Skill Development</h3><p class="lede" style="margin-top:10px; font-size:0.96rem;">Build student capability through structured learning and hands-on practice.</p></div>
+              <div class="card"><div class="icon-chip">2</div><h3 style="margin-top:18px;">Mentorship Ecosystem</h3><p class="lede" style="margin-top:10px; font-size:0.96rem;">Create accessible guidance from experts, alumni, and industry practitioners.</p></div>
+              <div class="card"><div class="icon-chip">3</div><h3 style="margin-top:18px;">Financial Pathways</h3><p class="lede" style="margin-top:10px; font-size:0.96rem;">Connect student ventures to grants, seed support, and investor networks.</p></div>
+              <div class="card"><div class="icon-chip">4</div><h3 style="margin-top:18px;">Commercialization</h3><p class="lede" style="margin-top:10px; font-size:0.96rem;">Move ideas from prototype stage into market-ready products and services.</p></div>
+              <div class="card"><div class="icon-chip">5</div><h3 style="margin-top:18px;">Economic Impact</h3><p class="lede" style="margin-top:10px; font-size:0.96rem;">Support jobs, enterprise growth, and local innovation outcomes.</p></div>
+            </div>
+          </div>
+
+          <div class="page-band slate" style="margin-top:24px;">
+            <div class="band-title">
+              <div class="eyebrow">Stakeholders</div>
+              <h2>Collaborators across the ecosystem.</h2>
+            </div>
+            <div class="stakeholder-grid">
+              <div class="chip">Universities</div>
+              <div class="chip">Government of Malawi</div>
+              <div class="chip">Youth Entrepreneurs</div>
+              <div class="chip">NGOs</div>
+              <div class="chip">Financial Institutions</div>
+              <div class="chip">Investors</div>
+              <div class="chip">Private Sector Partners</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="platform" data-page="platform">
+          <div class="page-band white">
+            <div class="band-title">
+              <div class="eyebrow">Platform Features</div>
+              <h2>Smart workspace modules built for founders and partners.</h2>
+              <p class="lede">A multi-tab showcase that behaves like discrete software pages while remaining inside a single HTML file.</p>
+            </div>
+
+            <div class="tabs-layout">
+              <div>
+                <div class="tabs" role="tablist" aria-label="Platform features tabs">
+                  <button class="tab-btn active" type="button" data-tab="registration">Startup Registration Portal</button>
+                  <button class="tab-btn" type="button" data-tab="business-plan">Business Plan Submission</button>
+                  <button class="tab-btn" type="button" data-tab="mentorship">Virtual Mentorship</button>
+                  <button class="tab-btn" type="button" data-tab="courses">Online Entrepreneurship Courses</button>
+                  <button class="tab-btn" type="button" data-tab="matching">Investor & Grant Matching</button>
+                </div>
+              </div>
+
+              <div class="tab-panel active" id="tab-registration">
+                <div class="eyebrow">Interactive module</div>
+                <h3 style="margin-top:10px;">Startup registration, mentoring, and capital readiness in one environment.</h3>
+                <ul class="feature-list">
+                  <li><span>1. Startup Registration Portal</span><span style="color:var(--blue);">Live intake</span></li>
+                  <li><span>2. Business Plan Submission</span><span style="color:var(--green);">Structured review</span></li>
+                  <li><span>3. Virtual Mentorship</span><span style="color:var(--blue);">Scheduled sessions</span></li>
+                </ul>
+                <div style="margin-top:24px;" class="window-mockup">
+                  <div class="window-top">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span style="margin-left:10px; color:var(--muted); font-size:0.9rem;">Daeyang Smart Portal</span>
+                  </div>
+                  <div class="window-body">
+                    <div class="window-grid">
+                      <div class="portal-screen">
+                        <div class="mini-tile"><strong>Dashboard metrics</strong><span style="color:var(--muted); line-height:1.7;">Student progress, mentor actions, and funding signals.</span></div>
+                        <div class="mini-tile"><strong>Course progress</strong><span style="color:var(--muted); line-height:1.7;">Learning pathways and completion tracking.</span></div>
+                        <div class="mini-tile"><strong>Grant matching</strong><span style="color:var(--muted); line-height:1.7;">Investor and donor alignment for growth.</span></div>
+                        <div class="mini-tile"><strong>Business plan review</strong><span style="color:var(--muted); line-height:1.7;">Evaluation workflow with comments and status updates.</span></div>
+                      </div>
+                      <div class="placeholder-box" style="min-height: 100%;">
+                        <div>
+                          <div class="camera-icon" style="margin:0 auto 14px;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                              <rect x="3" y="4" width="18" height="14" rx="2"></rect>
+                              <path d="M8 18h8"></path>
+                              <path d="M12 8v6"></path>
+                              <path d="M9 11h6"></path>
+                            </svg>
+                          </div>
+                          <strong>[PLACEHOLDER: IMAGE_PLATFORM_DASHBOARD]</strong>
+                          <p class="helper-text">Insert actual application portal/dashboard screenshot here (referencing the multi-card dashboard layouts from Deayang University_Smart_Business_Incubation.pptx).</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-panel" id="tab-business-plan">
+                <div class="eyebrow">Business Plan</div>
+                <h3 style="margin-top:10px;">Submission flows that feel structured and credible.</h3>
+                <p class="lede" style="margin-top:14px;">Students can upload plans, attach evidence, and receive guided feedback through a disciplined interface.</p>
+              </div>
+
+              <div class="tab-panel" id="tab-mentorship">
+                <div class="eyebrow">Mentorship</div>
+                <h3 style="margin-top:10px;">Virtual mentor rooms, scheduling, and progress logs.</h3>
+                <p class="lede" style="margin-top:14px;">Each session is tracked with outcomes, follow-ups, and milestone checkpoints to keep founders moving forward.</p>
+              </div>
+
+              <div class="tab-panel" id="tab-courses">
+                <div class="eyebrow">Courses</div>
+                <h3 style="margin-top:10px;">Learning modules for entrepreneurship and digital execution.</h3>
+                <p class="lede" style="margin-top:14px;">The course environment supports business basics, practical growth skills, and readiness for real-world launch activity.</p>
+              </div>
+
+              <div class="tab-panel" id="tab-matching">
+                <div class="eyebrow">Matching</div>
+                <h3 style="margin-top:10px;">Investor and grant discovery built around venture readiness.</h3>
+                <p class="lede" style="margin-top:14px;">The matching experience helps align founders with the right capital partner at the right stage.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="framework" data-page="framework">
+          <div class="page-band slate">
+            <div class="band-title">
+              <div class="eyebrow">Framework & Sustainability</div>
+              <h2>Operational phases designed for institutional scale.</h2>
+              <p class="lede">A strategic roadmap, expected outcomes, and a self-sustaining revenue model for long-term viability.</p>
+            </div>
+
+            <div class="roadmap">
+              <div class="phase">
+                <div class="phase-line"><div class="phase-dot"></div></div>
+                <div class="phase-card"><div class="eyebrow">Phase 1</div><h3 style="margin-top:10px;">Needs Assessment</h3><p class="lede" style="margin-top:10px;">Map the current student, faculty, and innovation gaps across Daeyang University.</p></div>
+              </div>
+              <div class="phase">
+                <div class="phase-line"><div class="phase-dot"></div></div>
+                <div class="phase-card"><div class="eyebrow">Phase 2</div><h3 style="margin-top:10px;">System Development</h3><p class="lede" style="margin-top:10px;">Build the platform, support workflows, and content architecture.</p></div>
+              </div>
+              <div class="phase">
+                <div class="phase-line"><div class="phase-dot"></div></div>
+                <div class="phase-card"><div class="eyebrow">Phase 3</div><h3 style="margin-top:10px;">Pilot at University</h3><p class="lede" style="margin-top:10px;">Launch the pilot with selected student founders and partner teams.</p></div>
+              </div>
+              <div class="phase">
+                <div class="phase-line"><div class="phase-dot"></div></div>
+                <div class="phase-card"><div class="eyebrow">Phase 4</div><h3 style="margin-top:10px;">Training & Mentorship</h3><p class="lede" style="margin-top:10px;">Run structured learning, mentorship, and venture coaching loops.</p></div>
+              </div>
+              <div class="phase">
+                <div class="phase-line"><div class="phase-dot"></div></div>
+                <div class="phase-card"><div class="eyebrow">Phase 5</div><h3 style="margin-top:10px;">Expansion Nationwide</h3><p class="lede" style="margin-top:10px;">Replicate the model across universities and partner ecosystems.</p></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="page-band white" style="margin-top:24px;">
+            <div class="band-title">
+              <div class="eyebrow">Expected Outcomes</div>
+              <h2>Clear benefits for students, universities, and industry partners.</h2>
+            </div>
+            <div class="outcomes">
+              <div class="outcome"><div class="check">✓</div><div>Increased startup creation</div></div>
+              <div class="outcome"><div class="check">✓</div><div>Youth employment pathways</div></div>
+              <div class="outcome"><div class="check">✓</div><div>Innovation commercialization</div></div>
+              <div class="outcome"><div class="check">✓</div><div>Stronger university-industry collaboration</div></div>
+            </div>
+          </div>
+
+          <div class="page-band navy" style="margin-top:24px;">
+            <div class="sustain-grid">
+              <div>
+                <div class="eyebrow light">Sustainability Strategy</div>
+                <h2 style="margin-top:12px; max-width: 15ch;">A self-sustaining operating engine.</h2>
+                <p class="lede" style="margin-top:16px; color: rgba(255,255,255,0.78); max-width: 56ch;">
+                  Revenue is powered by memberships, institutional partnerships, sponsorships, training programs, and
+                  incubation service fees. The structure is designed to remain financially credible while continuing to
+                  expand the ecosystem.
+                </p>
+                <div class="revenue-list">
+                  <div class="row"><span>Memberships</span><span style="color:var(--green);">Recurring</span></div>
+                  <div class="row"><span>Partnerships</span><span style="color:var(--blue);">Strategic</span></div>
+                  <div class="row"><span>Sponsorships</span><span style="color:var(--blue);">Brand-led</span></div>
+                  <div class="row"><span>Training programs</span><span style="color:var(--green);">Scalable</span></div>
+                  <div class="row"><span>Incubation service fees</span><span style="color:var(--green);">Operational</span></div>
+                </div>
+              </div>
+              <div class="placeholder-box" style="background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(240,245,255,0.96)); min-height: 420px;">
+                <div>
+                  <div class="camera-icon" style="margin:0 auto 14px; background: rgba(30,58,138,0.08);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 12h5l3-7 4 14 3-7h3"></path>
+                    </svg>
+                  </div>
+                  <strong>[PLACEHOLDER: IMAGE_SUSTAINABILITY_NETWORK]</strong>
+                  <p class="helper-text">Insert professional photo symbolizing business growth, corporate handshakes, or partnership signings here.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const pages = Array.from(document.querySelectorAll('.page'));
+      const navButtons = Array.from(document.querySelectorAll('.nav-link'));
+      const tabButtons = Array.from(document.querySelectorAll('[data-tab]'));
+      const tabPanels = {
+        registration: document.getElementById('tab-registration'),
+        'business-plan': document.getElementById('tab-business-plan'),
+        mentorship: document.getElementById('tab-mentorship'),
+        courses: document.getElementById('tab-courses'),
+        matching: document.getElementById('tab-matching')
+      };
+
+      function setActivePage(pageId) {
+        pages.forEach((page) => {
+          const isActive = page.id === pageId;
+          page.classList.toggle('active', isActive);
+          page.style.display = isActive ? 'block' : 'none';
+        });
+
+        navButtons.forEach((button) => {
+          const isActive = button.dataset.page === pageId;
+          button.classList.toggle('active', isActive);
+          button.setAttribute('aria-current', isActive ? 'page' : 'false');
+        });
+
+        window.scrollTo(0, 0);
+      }
+
+      function setActiveTab(tabId) {
+        tabButtons.forEach((button) => button.classList.toggle('active', button.dataset.tab === tabId));
+        Object.entries(tabPanels).forEach(([key, panel]) => {
+          if (!panel) return;
+          panel.classList.toggle('active', key === tabId);
+        });
+      }
+
+      document.querySelectorAll('[data-page-target]').forEach((button) => {
+        button.addEventListener('click', () => setActivePage(button.dataset.pageTarget));
+      });
+
+      tabButtons.forEach((button) => {
+        button.addEventListener('click', () => setActiveTab(button.dataset.tab));
+      });
+
+      navButtons.forEach((button) => {
+        button.addEventListener('click', () => setActivePage(button.dataset.page));
+      });
+
+      setActivePage('home');
+      setActiveTab('registration');
+    })();
+  </script>
+</body>
+</html>
