@@ -2,13 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
+import logo from "@/assets/logo/logo.png";
 
 const navItems = [
   { label: "Home", href: "/" },
   { label: "About & Objectives", href: "/about" },
   { label: "Platform Features", href: "/features" },
   { label: "Framework", href: "/framework" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export default function Header() {
@@ -22,30 +25,30 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-[#1E3A8A] border-b border-white/10 shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 bg-white rounded flex items-center justify-center text-[#1E3A8A] font-black text-xl transition-transform duration-300 group-hover:scale-110">
-            D
-          </div>
-          <p className="text-white font-extrabold text-xl tracking-tighter">
-            Daeyang <span className="font-medium opacity-80 group-hover:opacity-100 transition-opacity">Hub</span>
-          </p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-25 md:h-30 flex items-center justify-between">
+
+        {/* Logo — actual image, name removed since it's on the logo */}
+        <Link href="/" className="flex items-center group">
+          <Image
+            src={logo}
+            alt="Daeyang University Smart Business Incubation Hub"
+            className="h-14 md:h-30 lg:h-40 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-semibold transition-all duration-200 hover:text-[#38BDF8] hover:-translate-y-0.5 ${
-                  isActive
-                    ? "text-[#38BDF8] underline underline-offset-8 decoration-2"
-                    : "text-white/80"
-                }`}
+                className={`text-sm font-semibold transition-all duration-200 hover:text-[#38BDF8] hover:-translate-y-0.5 ${isActive
+                  ? "text-[#38BDF8] underline underline-offset-8 decoration-2"
+                  : "text-white/80"
+                  }`}
               >
                 {item.label}
               </Link>
@@ -54,11 +57,11 @@ export default function Header() {
         </nav>
 
         {/* Right CTA / Mobile Menu button */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <div className="hidden sm:block">
             <Link
               href="/signup"
-              className="bg-white px-6 py-2.5 rounded-none font-extrabold text-xs uppercase tracking-[0.15em] shadow-xl hover:bg-slate-100 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-nowrap block text-[#1E3A8A]"
+              className="bg-[#2563EB] hover:bg-blue-600 text-white px-6 py-2.5 font-extrabold text-xs uppercase tracking-[0.15em] shadow-lg shadow-blue-700/30 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 text-nowrap block border border-blue-400/30"
             >
               GET STARTED
             </Link>
@@ -85,9 +88,8 @@ export default function Header() {
 
       {/* Mobile Slide-down Menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-white/10 ${
-          isMenuOpen ? "max-h-96 border-t bg-[#1E3A8A]" : "max-h-0 pointer-events-none"
-        }`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-white/10 ${isMenuOpen ? "max-h-[32rem] border-t bg-[#1E3A8A]" : "max-h-0 pointer-events-none"
+          }`}
       >
         <div className="px-4 py-6 space-y-4 flex flex-col">
           {navItems.map((item) => {
@@ -97,11 +99,10 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`text-base font-bold transition-all duration-200 pl-2 border-l-2 hover:text-[#38BDF8] hover:translate-x-1 ${
-                  isActive
-                    ? "text-[#38BDF8] border-[#38BDF8]"
-                    : "text-white/80 border-transparent"
-                }`}
+                className={`text-base font-bold transition-all duration-200 pl-2 border-l-2 hover:text-[#38BDF8] hover:translate-x-1 ${isActive
+                  ? "text-[#38BDF8] border-[#38BDF8]"
+                  : "text-white/80 border-transparent"
+                  }`}
               >
                 {item.label}
               </Link>
@@ -111,7 +112,7 @@ export default function Header() {
             <Link
               href="/signup"
               onClick={() => setIsMenuOpen(false)}
-              className="bg-white py-3 rounded-none font-extrabold text-xs uppercase tracking-[0.15em] shadow-xl hover:bg-slate-100 transition-all text-center block text-[#1E3A8A]"
+              className="bg-[#2563EB] hover:bg-blue-600 text-white py-3 font-extrabold text-xs uppercase tracking-[0.15em] shadow-lg transition-all text-center block"
             >
               GET STARTED
             </Link>
@@ -121,4 +122,3 @@ export default function Header() {
     </header>
   );
 }
-
