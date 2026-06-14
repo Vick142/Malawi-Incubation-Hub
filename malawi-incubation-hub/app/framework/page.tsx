@@ -39,7 +39,7 @@ export default function FrameworkPage() {
           <div className="relative max-w-4xl mx-auto">
             {/* Timeline Vertical Line */}
             <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 bg-slate-200 -translate-x-1/2" />
-            
+
             <div className="space-y-12 relative">
               {roadmap.map((item, idx) => (
                 <div key={idx} className={`relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8 pl-12 md:pl-0 ${idx % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
@@ -64,52 +64,52 @@ export default function FrameworkPage() {
       {/* Expected Value Callouts */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {values.map((v, idx) => (
-                <div key={idx} className="p-8 bg-[#1E3A8A] rounded-2xl text-center shadow-xl shadow-navy/20 group hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300">
-                   <p className="text-emerald-400 font-black text-3xl mb-1 leading-none">{v.value}</p>
-                   <p className="text-white font-bold text-xs uppercase tracking-tighter leading-tight opacity-80">{v.label}</p>
-                </div>
-              ))}
-           </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((v, idx) => (
+              <div key={idx} className="p-8 bg-[#1E3A8A] rounded-2xl text-center shadow-xl shadow-navy/20 group hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300">
+                <p className="text-emerald-400 font-black text-3xl mb-1 leading-none">{v.value}</p>
+                <p className="text-white font-bold text-xs uppercase tracking-tighter leading-tight opacity-80">{v.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Business Continuity Model */}
       <section className="py-24 bg-slate-50 border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="grid lg:grid-cols-2 gap-16 lg:items-center">
-              <div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-tight mb-6 sm:mb-8">Business Continuity Model</h2>
-                <div className="grid sm:grid-cols-2 gap-6">
-                   {revenueModel.map((r, idx) => (
-                     <div key={idx} className="p-6 bg-white rounded-2xl border border-slate-200 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 cursor-default">
-                        <span className="text-2xl mb-4 block">{r.icon}</span>
-                        <h4 className="font-bold text-[#1E3A8A] mb-2">{r.title}</h4>
-                        <p className="text-xs text-slate-500 leading-relaxed font-medium">{r.desc}</p>
-                     </div>
-                   ))}
-                </div>
+          <div className="grid lg:grid-cols-2 gap-16 lg:items-center">
+            <div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1E3A8A] tracking-tight mb-6 sm:mb-8">Business Continuity Model</h2>
+              <div className="grid sm:grid-cols-2 gap-6">
+                {revenueModel.map((r, idx) => (
+                  <div key={idx} className="p-6 bg-white rounded-2xl border border-slate-200 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 cursor-default">
+                    <span className="text-2xl mb-4 block">{r.icon}</span>
+                    <h4 className="font-bold text-[#1E3A8A] mb-2">{r.title}</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed font-medium">{r.desc}</p>
+                  </div>
+                ))}
               </div>
+            </div>
 
-              <div className="space-y-6">
-                <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-slate-100 group">
-                  <Image
-                    src={bankImage}
-                    alt="Corporate partner handshake and banking cooperation"
-                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                    priority
-                  />
-                </div>
-                <div className="p-8 bg-blue-500 rounded-3xl text-white">
-                   <h3 className="text-2xl font-black mb-4">Self-Sustaining Operations</h3>
-                   <p className="opacity-90 leading-relaxed">
-                     Our revenue engine is powered by strategic alignments that ensure long-term viability 
-                     without relying solely on university budgets or grant cycles.
-                   </p>
-                </div>
+            <div className="space-y-6">
+              <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-slate-100 group">
+                <Image
+                  src={bankImage}
+                  alt="Corporate partner handshake and banking cooperation"
+                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                  priority
+                />
               </div>
-           </div>
+              <div className="p-8 bg-blue-500 rounded-3xl text-white">
+                <h3 className="text-2xl font-black mb-4">Self-Sustaining Operations</h3>
+                <p className="opacity-90 leading-relaxed">
+                  Our revenue engine is powered by strategic alignments that ensure long-term viability
+                  without relying solely on university budgets or grant cycles.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
