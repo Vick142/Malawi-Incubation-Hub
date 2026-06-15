@@ -2,56 +2,58 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import logo from "@/assets/logo/logo.png";
 
 // --- Custom SVGs for premium look & feel (No external dependencies) ---
 const Icons = {
   Dashboard: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg>
   ),
   Profile: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
   ),
   BusinessPlan: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
   ),
   Training: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /></svg>
   ),
   Mentors: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 15v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="7" r="4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 15v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2" /><circle cx="12" cy="7" r="4" /></svg>
   ),
   Investors: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
   ),
   Funding: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></svg>
   ),
   Analytics: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>
   ),
   Events: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
   ),
   Resources: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>
   ),
   Settings: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" /></svg>
   ),
   Logout: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg>
   ),
   Calendar: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
   ),
   Clock: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
   ),
   Send: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg>
   ),
   ArrowRight: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
   )
 };
 
@@ -78,11 +80,10 @@ interface SidebarItemProps {
 const SidebarItem = ({ icon: Icon, label, active, onClick }: SidebarItemProps) => (
   <button
     onClick={onClick}
-    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 relative overflow-hidden group ${
-      active
-        ? "bg-[#2563EB] text-white shadow-[inset_0_0_8px_rgba(255,255,255,0.2)] shadow-lg shadow-blue-600/30 font-bold"
-        : "text-slate-400 hover:bg-slate-800/40 hover:text-slate-100 font-medium"
-    }`}
+    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 relative overflow-hidden group ${active
+      ? "bg-[#2563EB] text-white shadow-[inset_0_0_8px_rgba(255,255,255,0.2)] shadow-lg shadow-blue-600/30 font-bold"
+      : "text-slate-400 hover:bg-slate-800/40 hover:text-slate-100 font-medium"
+      }`}
   >
     <span className={`transition-colors duration-300 ${active ? "text-white" : "text-slate-500 group-hover:text-slate-300"}`}>
       <Icon />
@@ -101,7 +102,7 @@ export default function FeaturesPage() {
   // --- Dynamic App States ---
   // Modal messages
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  
+
   // AI assistant states
   const [aiInput, setAiInput] = useState("");
   const [aiResponses, setAiResponses] = useState<Array<{ sender: "user" | "bot"; text: string }>>([
@@ -226,22 +227,20 @@ export default function FeaturesPage() {
     <div className="flex min-h-screen bg-[#F8FAFC]">
       {/* 1. LEFT SIDEBAR PANEL (Sticky on desktop, Collapsible slide drawer on mobile) */}
       <aside
-        className={`fixed lg:sticky top-0 left-0 z-50 w-72 bg-[#0F172A] text-white flex flex-col p-6 h-screen overflow-y-auto transform transition-transform duration-300 ease-in-out border-r border-slate-800 ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
-        }`}
+        className={`fixed lg:sticky top-0 left-0 z-50 w-72 bg-[#0F172A] text-white flex flex-col p-6 h-screen overflow-y-auto transform transition-transform duration-300 ease-in-out border-r border-slate-800 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+          }`}
       >
         {/* Brand/Platform Header */}
-        <div className="flex items-center justify-between mb-10 px-2 shrink-0">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-[#0F172A] font-black text-xl shadow-lg transition-transform duration-300 group-hover:scale-105">
-              D
-            </div>
-            <div>
-              <span className="text-white font-black text-lg tracking-tight block">Daeyang Hub</span>
-              <span className="text-[10px] text-sky-400 font-bold uppercase tracking-wider block -mt-1">Incubation Workspace</span>
-            </div>
+        <div className="flex items-center justify-between mb-10 px-0 shrink-0">
+          <Link href="/" className="flex items-center group">
+            <Image
+              src={logo}
+              alt="Smart Incubation Hub Logo"
+              className="h-30 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              priority
+            />
           </Link>
-          
+
           {/* Mobile Close Button */}
           <button
             onClick={() => setIsSidebarOpen(false)}
@@ -282,7 +281,7 @@ export default function FeaturesPage() {
               setIsSidebarOpen(false);
             }}
           />
-          <button 
+          <button
             onClick={() => triggerToast("Session logged out. (Prototype Redirect to Login)")}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-rose-400 hover:bg-rose-500/10 font-semibold tracking-wide transition-all duration-300"
           >
@@ -302,7 +301,7 @@ export default function FeaturesPage() {
 
       {/* 2. WORKSPACE CANVAS CONTAINER (Unified global scrolling) */}
       <div className="flex-1 flex flex-col min-w-0">
-        
+
         {/* Workspace Canvas Header */}
         <header className="sticky top-0 z-30 h-20 bg-white/85 backdrop-blur-md border-b border-slate-100 flex items-center justify-between px-6 lg:px-8">
           <div className="flex items-center gap-4">
@@ -316,13 +315,23 @@ export default function FeaturesPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
-            
+
             {/* Dynamic Page Indicator */}
-            <div>
-              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Student Hub Console</span>
-              <span className="text-xl font-extrabold text-slate-800 tracking-tight capitalize block -mt-1">
-                {activeWorkspaceTab.replace("-", " ")} Workspace
-              </span>
+            <div className="flex items-center gap-3">
+              {/* Logo on mobile/tablet view only (hidden on desktop) */}
+              <div className="lg:hidden block bg-[#0F172A] p-1.5 rounded-lg border border-white/10 shadow-sm shrink-0">
+                <Image
+                  src={logo}
+                  alt="Daeyang Hub Logo"
+                  className="h-6 w-auto object-contain"
+                />
+              </div>
+              <div>
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Student Hub Console</span>
+                <span className="text-lg sm:text-xl font-extrabold text-slate-800 tracking-tight capitalize block -mt-1">
+                  {activeWorkspaceTab.replace("-", " ")} Workspace
+                </span>
+              </div>
             </div>
           </div>
 
@@ -341,11 +350,11 @@ export default function FeaturesPage() {
         {/* Dynamic Workspace Canvas View (Bounded in a balanced container) */}
         <main className="flex-grow p-6 lg:p-8">
           <div className="max-w-[1400px] mx-auto w-full space-y-8 animate-in fade-in duration-300">
-            
+
             {/* ─── TAB VIEW: DASHBOARD ─── */}
             {activeWorkspaceTab === "dashboard" && (
               <div className="space-y-8">
-                
+
                 {/* Hero Panel Welcome text */}
                 <div>
                   <h1 className="text-3xl font-black text-slate-900 tracking-tight">Workspace Dashboard</h1>
@@ -354,7 +363,7 @@ export default function FeaturesPage() {
 
                 {/* Metric Sub-cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  
+
                   {/* Widget 1: Progress Circular Bar */}
                   <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm shadow-slate-200/50 flex items-center justify-between gap-4">
                     <div>
@@ -414,7 +423,7 @@ export default function FeaturesPage() {
                 <div>
                   <h2 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 ml-1">Venture Launch Accelerator</h2>
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-                    
+
                     {/* Item 1 */}
                     <button
                       onClick={() => setActiveWorkspaceTab("business-plan")}
@@ -480,7 +489,7 @@ export default function FeaturesPage() {
 
                 {/* Split Row Layout: Events + AI Box */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  
+
                   {/* Left Column Upcoming Events */}
                   <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-sm shadow-slate-200/40 flex flex-col justify-between">
                     <div>
@@ -641,13 +650,13 @@ export default function FeaturesPage() {
             {/* ─── TAB VIEW: BUSINESS PLAN (The Submission Engine) ─── */}
             {activeWorkspaceTab === "business-plan" && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                
+
                 {/* Left Step list block (Column 4) */}
                 <div className="lg:col-span-4 bg-white p-6 rounded-3xl border border-slate-100 shadow-sm shadow-slate-200/50">
                   <h3 className="text-sm font-black text-slate-800 uppercase tracking-wider mb-6">Wizard Progress Steps</h3>
                   <div className="space-y-6 relative pl-3">
                     <div className="absolute left-4 top-1 bottom-1 w-0.5 bg-slate-100" />
-                    
+
                     {[
                       { step: 1, label: "Business Information" },
                       { step: 2, label: "Problem & Solution" },
@@ -662,20 +671,18 @@ export default function FeaturesPage() {
                       return (
                         <div key={s.step} className="flex items-center gap-4 relative z-10 group cursor-pointer" onClick={() => setPlanStep(s.step)}>
                           <div
-                            className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs border transition-all duration-300 ${
-                              isCompleted
-                                ? "bg-emerald-500 border-emerald-500 text-white"
-                                : isActive
+                            className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs border transition-all duration-300 ${isCompleted
+                              ? "bg-emerald-500 border-emerald-500 text-white"
+                              : isActive
                                 ? "bg-[#2563EB] border-[#2563EB] text-white shadow-md shadow-blue-500/20"
                                 : "bg-white border-slate-200 text-slate-400 group-hover:border-slate-300"
-                            }`}
+                              }`}
                           >
                             {isCompleted ? "✓" : s.step}
                           </div>
                           <span
-                            className={`text-sm tracking-tight transition-colors duration-300 ${
-                              isActive ? "text-slate-800 font-bold" : "text-slate-400 group-hover:text-slate-600 font-medium"
-                            }`}
+                            className={`text-sm tracking-tight transition-colors duration-300 ${isActive ? "text-slate-800 font-bold" : "text-slate-400 group-hover:text-slate-600 font-medium"
+                              }`}
                           >
                             {s.label}
                           </span>
@@ -820,7 +827,7 @@ export default function FeaturesPage() {
             {/* ─── TAB VIEW: TRAINING CENTER (Educational Academy) ─── */}
             {activeWorkspaceTab === "training" && (
               <div className="space-y-8">
-                
+
                 {/* Header info */}
                 <div>
                   <h1 className="text-3xl font-black text-slate-900 tracking-tight">Online Entrepreneurship Academy</h1>
@@ -833,11 +840,10 @@ export default function FeaturesPage() {
                     <button
                       key={cat}
                       onClick={() => setTrainingFilter(cat)}
-                      className={`px-4 py-2 text-xs font-black uppercase tracking-wider border-b-2 transition-all ${
-                        (trainingFilter === cat)
-                          ? "border-blue-600 text-blue-600"
-                          : "border-transparent text-slate-400 hover:text-slate-600"
-                      }`}
+                      className={`px-4 py-2 text-xs font-black uppercase tracking-wider border-b-2 transition-all ${(trainingFilter === cat)
+                        ? "border-blue-600 text-blue-600"
+                        : "border-transparent text-slate-400 hover:text-slate-600"
+                        }`}
                     >
                       {cat}
                     </button>
@@ -860,7 +866,7 @@ export default function FeaturesPage() {
                             </div>
                             <h3 className="text-base font-black text-slate-800 leading-snug tracking-tight mb-4">{course.title}</h3>
                           </div>
-                          
+
                           <div className="mt-4 pt-4 border-t border-slate-50 space-y-4">
                             <div>
                               <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
@@ -878,13 +884,12 @@ export default function FeaturesPage() {
                                 const updated = courses.map(c => c.id === course.id ? { ...c, progress: Math.min(100, c.progress + 10) } : c);
                                 setCourses(updated);
                               }}
-                              className={`w-full py-2.5 rounded-xl text-center font-bold text-xs uppercase tracking-wider transition-all duration-300 ${
-                                isComplete
-                                  ? "bg-emerald-50 text-emerald-600 border border-emerald-200 cursor-default"
-                                  : hasStarted
+                              className={`w-full py-2.5 rounded-xl text-center font-bold text-xs uppercase tracking-wider transition-all duration-300 ${isComplete
+                                ? "bg-emerald-50 text-emerald-600 border border-emerald-200 cursor-default"
+                                : hasStarted
                                   ? "bg-blue-550 border border-blue-500 text-[#2563EB] hover:bg-[#2563EB] hover:text-white"
                                   : "bg-slate-900 text-white hover:bg-slate-800"
-                              }`}
+                                }`}
                             >
                               {isComplete ? "Completed ✓" : hasStarted ? "Resume Course" : "Start Course"}
                             </button>
@@ -900,7 +905,7 @@ export default function FeaturesPage() {
             {/* ─── TAB VIEW: MENTORS (Advisory Matching) ─── */}
             {activeWorkspaceTab === "mentors" && (
               <div className="space-y-8">
-                
+
                 {/* Header info */}
                 <div>
                   <h1 className="text-3xl font-black text-slate-900 tracking-tight">Elite Mentorship Matchmaking</h1>
@@ -909,7 +914,7 @@ export default function FeaturesPage() {
 
                 {/* Directory advisors cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  
+
                   {/* Advisor 1 */}
                   <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-lg transition-all duration-300">
                     <div>
@@ -996,7 +1001,7 @@ export default function FeaturesPage() {
                     <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-2xl max-w-md w-full animate-in zoom-in-95 duration-200">
                       <h3 className="text-xl font-black text-slate-900 tracking-tight mb-2">Book Advisory Session</h3>
                       <p className="text-xs text-slate-400 font-bold mb-6">Scheduling with mentor: <span className="text-slate-800">{selectedMentor}</span></p>
-                      
+
                       <div className="space-y-4 mb-6">
                         <div>
                           <label className="block text-[10px] font-black text-slate-400 uppercase mb-1.5">Pick date</label>
@@ -1047,7 +1052,7 @@ export default function FeaturesPage() {
             {/* ─── TAB VIEW: INVESTORS (Seed & Capital access) ─── */}
             {activeWorkspaceTab === "investors" && (
               <div className="space-y-8">
-                
+
                 {/* Header info */}
                 <div>
                   <h1 className="text-3xl font-black text-slate-900 tracking-tight">Venture Capital & Seed Access Pipeline</h1>
@@ -1062,7 +1067,7 @@ export default function FeaturesPage() {
                   </div>
 
                   <div className="divide-y divide-slate-100">
-                    
+
                     {/* Item 1 */}
                     <div className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div>
@@ -1072,11 +1077,10 @@ export default function FeaturesPage() {
                       </div>
                       <button
                         onClick={() => handleInvestorAction(1, "Angel Investors Malawi")}
-                        className={`px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-300 ${
-                          investorStatuses[1] === "Connect Startup"
-                            ? "bg-slate-900 text-white hover:bg-slate-800"
-                            : "bg-blue-50 text-[#2563EB] border border-blue-200 cursor-default"
-                        }`}
+                        className={`px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-300 ${investorStatuses[1] === "Connect Startup"
+                          ? "bg-slate-900 text-white hover:bg-slate-800"
+                          : "bg-blue-50 text-[#2563EB] border border-blue-200 cursor-default"
+                          }`}
                       >
                         {investorStatuses[1]}
                       </button>
@@ -1091,11 +1095,10 @@ export default function FeaturesPage() {
                       </div>
                       <button
                         onClick={() => handleInvestorAction(2, "National Youth Enterprise Fund")}
-                        className={`px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-300 ${
-                          investorStatuses[2] === "Request Grant Review"
-                            ? "bg-emerald-600 text-white hover:bg-emerald-700"
-                            : "bg-emerald-50 text-emerald-600 border border-emerald-200 cursor-default"
-                        }`}
+                        className={`px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-300 ${investorStatuses[2] === "Request Grant Review"
+                          ? "bg-emerald-600 text-white hover:bg-emerald-700"
+                          : "bg-emerald-50 text-emerald-600 border border-emerald-200 cursor-default"
+                          }`}
                       >
                         {investorStatuses[2]}
                       </button>
@@ -1110,11 +1113,10 @@ export default function FeaturesPage() {
                       </div>
                       <button
                         onClick={() => handleInvestorAction(3, "Lilongwe Tech Angels")}
-                        className={`px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-300 ${
-                          investorStatuses[3] === "Connect Startup"
-                            ? "bg-slate-900 text-white hover:bg-slate-800"
-                            : "bg-blue-50 text-[#2563EB] border border-blue-200 cursor-default"
-                        }`}
+                        className={`px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-300 ${investorStatuses[3] === "Connect Startup"
+                          ? "bg-slate-900 text-white hover:bg-slate-800"
+                          : "bg-blue-50 text-[#2563EB] border border-blue-200 cursor-default"
+                          }`}
                       >
                         {investorStatuses[3]}
                       </button>
@@ -1155,7 +1157,7 @@ export default function FeaturesPage() {
                   <h1 className="text-2xl font-black text-slate-900 tracking-tight">Market Analytics Variables</h1>
                   <p className="text-slate-500 font-medium mt-1">Mock analytics metrics tracking startup validation variables.</p>
                 </div>
-                
+
                 <div className="space-y-6 pt-4">
                   {/* Metric 1 */}
                   <div>
